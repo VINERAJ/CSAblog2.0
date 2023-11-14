@@ -9,3 +9,13 @@ Unit2:
   description: Learn (JavaScript|Python|Java).  Start Agile development process.
   start: 4
   end: 7
+Unit3:
+  title: Individual/Team Projects, N@tM
+  description: Passion project using API. I am working backend. Multiplayer typing game.
+  start: 8
+  end: 12
+Unit4:
+  title: Warm-up Data Analysis and Sort Project
+  description: Work on sorting project
+  start: 13
+  end: 14
