@@ -7,7 +7,7 @@ baseurl: "/CSAblog2.0"
 remote_theme: jekyll/minima
 minima:
   social_links:
-    - { platform: github, user_url: "https://github.com/nighthawkcoders"}
+    - { platform: github, user_url: "https://github.com/VINERAJ"}
     - { platform: github, user_url: "https://github.com/Tirth-Thakkar"}
     - { platform: github, user_url: "https://github.com/h4seeb-cmd"}
 # remote_theme: pages-themes/dinky@v0.2.0
