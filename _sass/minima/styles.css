@@ -1,0 +1,25 @@
+.card {
+  background-color: #2ecc71;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+  .card h2 {
+    color: #3498db; }
+  .card p {
+    font-size: 14px;
+    margin-top: 10px; }
+  .card:hover {
+    transform: scale(1.05); }
+  .card.featured {
+    border: 2px solid #3498db; }
+  .card .btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer; }
+    .card .btn:hover {
+      background-color: #217dbb; }
+
+/*# sourceMappingURL=styles.css.map */

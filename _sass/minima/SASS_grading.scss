@@ -1,0 +1,47 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$border-radius: 8px;
+
+// Mixins
+@mixin card-styles {
+  background-color: $secondary-color;
+  border-radius: $border-radius;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Nesting
+.card {
+  @include card-styles;
+
+  h2 {
+    color: $primary-color;
+  }
+
+  p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &.featured {
+    border: 2px solid $primary-color;
+  }
+
+  .btn {
+    background-color: $primary-color;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
