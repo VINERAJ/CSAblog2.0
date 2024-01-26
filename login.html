@@ -1,0 +1,38 @@
+---
+layout: page
+title: SASS Login
+permalink: /login/
+---
+
+
+<head>
+    <!-- <link rel="stylesheet" type="text/css" href="/SASSLogin/assets/styles.css"> -->
+</head>
+<body>
+    <div>
+      <text>Enter your username and password to log in</text>
+    </div>
+    <form>
+        <text>Username: </text>
+        <input id="username"></input>
+        <br><text>Password: </text>
+        <input id="password"></input>
+        <br><button id="login">Login</button>
+    </form>
+    <script>
+        var email = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var data = {email:email, password:password};
+        document.getElementById("login").onclick = function(){
+            fetch("http://localhost:8085/authenticate", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)}).then((data) => {
+                console.log(data.status);
+                if (data.status==200) {
+                    console.log(data);
+                    window.location.replace("/about/");
+                } else if (data.status==404) {
+                    window.location.replace("/about/")
+                }
+            });
+        }
+    </script>
+</body>
