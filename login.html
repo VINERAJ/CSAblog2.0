@@ -31,7 +31,13 @@ permalink: /login/
                     console.log(data);
                     window.location.replace("/about/");
                 } else if (data.status==404) {
-                    window.location.replace("/about/")
+                    window.location.replace("/404.html")
+                } else if (data.status==403) {
+                    window.location.replace("/403.html")
+                } else if (data.status==400) {
+                    window.location.replace("/400.html")
+                } else {
+                    document.getElementById('message').innerHTML = "Invalid email or password"
                 }
             });
         }
