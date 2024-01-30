@@ -22,9 +22,10 @@ permalink: /login/
     <script>
         var email = document.getElementById("username").value;
         var password = document.getElementById("password").value;
-        var data = {email:email, password:password};
+        var request = {email:email, password:password};
         document.getElementById("login").onclick = function(){
-            fetch("http://localhost:8085/authenticate", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)}).then((data) => {
+            fetch("http://localhost:8085/authenticate", {method: 'POST', mode: 'cors', cache: 'no-cache', credentials: 'include', headers: {'Content-Type': 'application/json', "Access-Control-Allow-Credentials": "true",
+"Access-Control-Allow-Origin": "*"}, body: JSON.stringify(request)}).then((response) => {
                 console.log(data.status);
                 if (data.status==200) {
                     console.log(data);
