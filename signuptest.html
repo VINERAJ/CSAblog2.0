@@ -1,0 +1,135 @@
+---
+comments: true
+layout: base
+title: Login - Signup
+permalink: loginSignup
+---
+
+<div class="login-container">
+    <div class="card">
+        <h3>Login</h3>
+        <div class="Email">
+            <input id="Emaillogin" class="input" placeholder="Email">
+        </div>
+        <div class="Password">
+            <input id="PasswordLogin" class="input" placeholder="Password">
+        </div>
+        <div class="Buttons">
+            <button class="LoginB" onclick="person_login()">Login</button>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="login-container">
+    <div class="card2">
+        <h3>Sign-Up</h3>
+        <div class="Name">
+            <input id="signUpNameInput" class="input" placeholder="Name">
+        </div>
+        <div class="Email">
+            <input id="signUpEmailInput" class="input" placeholder="Email">
+        </div>
+        <div class="Password">
+            <input id="signUpPasswordInput" type="password" class="input" placeholder="Password">
+        </div>
+        <div class="Dob">
+            <input id="signUpDobInput" class="input" placeholder="Date of birth (MM-DD-YYYY)">
+        </div>
+        <div class="Buttons">
+            <button class="signUpButton" onclick="person_signup()">Sign Up</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function person_signup() {
+        var requestOptions = {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+        };
+
+        let fetchName = document.getElementById("signUpNameInput").value;
+        let fetchEmail = document.getElementById("signUpEmailInput").value;
+        let fetchPassword = document.getElementById("signUpPasswordInput").value;
+        let fetchDob = document.getElementById("signUpDobInput").value;
+
+        let requestURL = `http://localhost:8085/api/person/post?email=${fetchEmail}&password=${fetchPassword}&name=${fetchName}&dob=${fetchDob}`;
+        console.log(requestURL)
+
+        fetch(requestURL, requestOptions)
+        .then(response => {
+                if (!response.ok) {
+                    return response.text().then(errorMsg => {
+                        alert('Error: ' + errorMsg);
+                    });
+                }
+    
+                alert("Happy Dance You Are Signed Up");
+                location.reload();
+                
+            })
+            .catch(error => {
+                alert('An unexpected error occurred: ' + error.message);
+            });
+    }
+
+    function person_login() {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "email": document.getElementById("Emaillogin").value,
+            "password": document.getElementById("PasswordLogin").value
+
+            
+        });
+        console.log(raw);
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            credentials: 'include',  // 
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8085/authenticate", requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                const errorMsg = 'Login error: ' + response.status;
+                console.log(errorMsg);
+
+                switch (response.status) {
+                    case 401:
+                        alert(" 401 error you have typed in wrong user or pass");
+                        break;
+                    case 403:
+                        alert("Sorry you cant do that ");
+                        break;
+                    case 404:
+                        alert("We cant Seem To Locate that in our system try again?");
+                        break;
+                    
+                    default:
+                        alert("Login failed. Please try again later.");
+                }
+
+                return Promise.reject('Login failed');
+            }
+            return response.text()
+        })
+        .then(result => {
+            console.log(result);
+            window.location.replace("/about/");
+        })
+        .catch(error => console.error('Error during login:', error));
+
+    }
+
+</script>
